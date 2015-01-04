@@ -87,4 +87,34 @@ class StackTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('EKIM', $reversedString, "The string 'MIKE' should be reversed and become 'EKIM'.");
     }
+
+    /** @test */
+    public function balanced_parentheses_passes()
+    {
+        $parentheses = ['(', '(', '(', ')', ')', ')'];
+
+        foreach($parentheses as $p) {
+            if($p == '(')
+                $this->stack->push($p);
+            else
+                $this->stack->pop();
+        }
+
+        $this->assertEquals(0, $this->stack->size());
+    }
+
+    /** @test */
+    public function unbalanced_parentheses_fails()
+    {
+        $parentheses = ['(', '(', '(', ')', ')'];
+
+        foreach($parentheses as $p) {
+            if($p == '(')
+                $this->stack->push($p);
+            else
+                $this->stack->pop();
+        }
+
+        $this->assertFalse($this->stack->size() == 0);
+    }
 }
