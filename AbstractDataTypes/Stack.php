@@ -1,4 +1,4 @@
-<?php
+<?php namespace AbstractDataTypes;
 
 /**
  * Interface StackInterface
@@ -35,7 +35,10 @@ class Stack implements StackInterface
 
     public function pop()
     {
-        array_pop($this->stack);
+        if($this->isEmpty())
+            throw new \Exception("Stack is empty.");
+
+        return array_pop($this->stack);
     }
 
     public function peek()
