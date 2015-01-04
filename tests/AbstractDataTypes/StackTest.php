@@ -72,4 +72,19 @@ class StackTest extends PHPUnit_Framework_TestCase
 
         $this->assertFalse($this->stack->isEmpty());
     }
+
+    /** @test */
+    public function reverse_string()
+    {
+        $this->stack->push('M');
+        $this->stack->push('I');
+        $this->stack->push('K');
+        $this->stack->push('E');
+
+        $reversedString = '';
+        while(! $this->stack->isEmpty())
+            $reversedString .= $this->stack->pop();
+
+        $this->assertEquals('EKIM', $reversedString, "The string 'MIKE' should be reversed and become 'EKIM'.");
+    }
 }
