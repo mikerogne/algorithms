@@ -58,4 +58,18 @@ class StackTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($peekedValue, $poppedValue, "\$peekedValue and \$poppedValue should be same.");
     }
+
+    /** @test */
+    public function check_if_empty()
+    {
+        $this->assertTrue($this->stack->isEmpty());
+    }
+
+    /** @test */
+    public function check_if_not_empty()
+    {
+        $this->stack->push('foo');
+
+        $this->assertFalse($this->stack->isEmpty());
+    }
 }
