@@ -6,6 +6,9 @@
     "autoload": {
         "classmap": [
             "AbstractDataTypes"
+        ],
+        "files": [
+            "DSAAME/factorial.php"
         ]
     }
 }
