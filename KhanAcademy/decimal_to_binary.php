@@ -1,9 +1,5 @@
 <?php
 
-var_dump(decimalToBinary(1));
-var_dump(decimalToBinary(2));
-var_dump(decimalToBinary(3));
-
 function decimalToBinary($integer)
 {
     if($integer < 0)
