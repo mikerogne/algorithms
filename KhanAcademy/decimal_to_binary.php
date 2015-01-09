@@ -6,6 +6,9 @@ var_dump(decimalToBinary(3));
 
 function decimalToBinary($integer)
 {
+    if($integer < 0)
+        throw new Exception("Integer must be >= 0.");
+    
     // Determine maximum power of 2 that will meet or exceed $integer.
     $highestPower = null;
     for ($i = 0; $i < 100; $i++) {
