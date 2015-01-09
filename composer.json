@@ -8,7 +8,8 @@
             "AbstractDataTypes"
         ],
         "files": [
-            "DSAAME/factorial.php"
+            "DSAAME/factorial.php",
+            "KhanAcademy/decimal_to_binary.php"
         ]
     }
 }
