@@ -1,4 +1,4 @@
-<?php  namespace DSAAME\LinkedLists;
+<?php namespace DSAAME\LinkedLists;
 
 class SingleLinkedListNode implements Contracts\SingleLinkedListNode
 {
@@ -7,7 +7,8 @@ class SingleLinkedListNode implements Contracts\SingleLinkedListNode
 
     public function __construct($data)
     {
-        $this->data = $data;
+        $this->data     = $data;
+        $this->nextNode = null;
     }
 
     public function setData($data)

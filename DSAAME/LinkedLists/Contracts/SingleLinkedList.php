@@ -4,9 +4,11 @@ interface SingleLinkedList
 {
     public function getTotalNodes();
 
-    public function addNode();
+    public function addNode($data);
 
-    public function addNodeToBeginning();
+    public function addNodeToBeginning($data);
+
+    public function addNodeAfter($data, $nodePosition);
 
     public function getNode($nodePosition);
 
