@@ -98,13 +98,8 @@ class SingleLinkedList implements Contracts\SingleLinkedList
     public function deleteLastNode()
     {
         // If we have 1 (or zero) nodes, easy peasy.
-        if ($this->totalNodes <= 1) {
-            $this->firstNode  = null;
-            $this->lastNode   = null;
-            $this->totalNodes = 0;
-
-            return true;
-        }
+        if ($this->totalNodes <= 1)
+            return $this->deleteAllNodes();
 
         $currentNode = $this->firstNode;
 
@@ -121,7 +116,23 @@ class SingleLinkedList implements Contracts\SingleLinkedList
 
     public function deleteFirstNode()
     {
-        // todo
+        // Basically, just set the 2nd node in the list as $this->firstNode, and decrement our totalNodes count.
+        if ($this->totalNodes <= 1)
+            return $this->deleteAllNodes();
+
+        $this->firstNode = $this->firstNode->getNextNode();
+        $this->totalNodes--;
+
+        return true;
+    }
+
+    public function deleteAllNodes()
+    {
+        $this->firstNode  = null;
+        $this->lastNode   = null;
+        $this->totalNodes = 0;
+
+        return true;
     }
 
     public function reverseList()

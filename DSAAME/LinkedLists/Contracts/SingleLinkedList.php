@@ -20,5 +20,7 @@ interface SingleLinkedList
 
     public function deleteFirstNode();
 
+    public function deleteAllNodes();
+
     public function reverseList();
 }
