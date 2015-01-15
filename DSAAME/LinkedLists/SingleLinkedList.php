@@ -97,7 +97,26 @@ class SingleLinkedList implements Contracts\SingleLinkedList
 
     public function deleteLastNode()
     {
-        // todo - not sure.. traverse list until I reach $this->count-1? Will require some thought.
+        // If we have 1 (or zero) nodes, easy peasy.
+        if ($this->totalNodes <= 1) {
+            $this->firstNode  = null;
+            $this->lastNode   = null;
+            $this->totalNodes = 0;
+
+            return true;
+        }
+
+        $currentNode = $this->firstNode;
+
+        while ($currentNode) {
+            if ($currentNode->isNextToLastNode()) {
+                $currentNode->setNextNode(null);
+                $this->totalNodes--;
+                break;
+            }
+
+            $currentNode = $currentNode->getNextNode();
+        }
     }
 
     public function deleteFirstNode()

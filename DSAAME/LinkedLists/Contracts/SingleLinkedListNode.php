@@ -8,5 +8,13 @@ interface SingleLinkedListNode
 
     public function setNextNode($nextNode);
 
+    /**
+     * @return null|SingleLinkedListNode
+     */
     public function getNextNode();
+
+    /**
+     * @return bool
+     */
+    public function isNextToLastNode();
 }

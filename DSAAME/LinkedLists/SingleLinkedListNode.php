@@ -26,8 +26,24 @@ class SingleLinkedListNode implements Contracts\SingleLinkedListNode
         $this->nextNode = $nextNode;
     }
 
+    /**
+     * @return null|SingleLinkedListNode
+     */
     public function getNextNode()
     {
         return $this->nextNode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNextToLastNode()
+    {
+        $nextNode = $this->getNextNode();
+
+        if (!$nextNode)
+            return false;
+
+        return $nextNode->getNextNode() === null;
     }
 }
