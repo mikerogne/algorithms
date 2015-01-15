@@ -57,7 +57,10 @@ class SingleLinkedList implements Contracts\SingleLinkedList
 
     public function addNodeToBeginning($data)
     {
-
+        $newNode = new SingleLinkedListNode($data);
+        $newNode->setNextNode($this->firstNode);
+        $this->firstNode = $newNode;
+        $this->totalNodes++;
     }
 
     public function addNodeAfter($data, $nodePosition)

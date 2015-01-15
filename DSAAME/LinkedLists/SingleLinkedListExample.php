@@ -27,3 +27,7 @@ var_dump($list->getAllNodes());
 
 $list->deleteFirstNode();
 var_dump($list->getAllNodes());
+
+$list->addNodeToBeginning('new starter node!');
+var_dump($list->getAllNodes());
+var_dump($list->getTotalNodes());
