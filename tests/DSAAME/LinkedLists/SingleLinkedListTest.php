@@ -50,9 +50,41 @@ class SingleLinkedListTest extends PHPUnit_Framework_TestCase
     {
         $this->list->addNodeToBeginning('new starter node!');
 
-        $correctArray = ['new starter node!', 'first', 'second', 'third'];
+        $expectedArray = ['new starter node!', 'first', 'second', 'third'];
         $actualArray = $this->list->getAllNodes();
 
-        $this->assertSame($correctArray, $actualArray);
+        $this->assertSame($expectedArray, $actualArray);
+    }
+
+    /** @test */
+    public function can_add_node_after_first_node()
+    {
+        $this->list->addNodeAfter(0, "new node");
+
+        $expectedArray = ['first', 'new node', 'second', 'third'];
+        $actualArray = $this->list->getAllNodes();
+
+        $this->assertSame($expectedArray, $actualArray);
+    }
+
+    /** @test */
+    public function can_add_node_after_second_node()
+    {
+        $this->list->addNodeAfter(1, "new node");
+
+        $expectedArray = ['first', 'second', 'new node', 'third'];
+        $actualArray = $this->list->getAllNodes();
+
+        $this->assertSame($expectedArray, $actualArray);
+    }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     * @expectedExceptionMessage Out of bounds.
+     */
+    public function throws_out_of_bounds_exception()
+    {
+        $this->list->addNodeAfter(100, "new node");
     }
 }

@@ -63,9 +63,29 @@ class SingleLinkedList implements Contracts\SingleLinkedList
         $this->totalNodes++;
     }
 
-    public function addNodeAfter($data, $nodePosition)
+    public function addNodeAfter($nodePosition, $data)
     {
+        if ($nodePosition > $this->totalNodes - 1)
+            throw new \Exception("Out of bounds.");
 
+        $newNode     = new SingleLinkedListNode($data);
+        $currentNode = $this->firstNode;
+        $count       = 0;
+
+        while ($currentNode) {
+            if ($count == $nodePosition) {
+                // Take what would have been the next node, and make it the NEW NODE's next node.
+                $previouslyNextNode = $currentNode->getNextNode();
+                $newNode->setNextNode($previouslyNextNode);
+
+                // Insert new node right after this one, making it become "inserted" after.
+                $currentNode->setNextNode($newNode);
+                $this->totalNodes++;
+            }
+
+            $currentNode = $currentNode->getNextNode();
+            $count++;
+        }
     }
 
     public function getNode($nodePosition)
