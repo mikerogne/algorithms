@@ -97,7 +97,6 @@ class SingleLinkedList implements Contracts\SingleLinkedList
         $count       = 0;
 
         while ($currentNode) {
-            echo "count={$count} and nodePosition={$nodePosition}\n";
             if($count == $nodePosition)
                 return $currentNode->getData();
 
@@ -108,15 +107,11 @@ class SingleLinkedList implements Contracts\SingleLinkedList
         return null;
     }
 
+    /**
+     * @return array
+     */
     public function getAllNodes()
     {
-        /*
-         * Something along the lines of:
-         * Get the first node "A" ($this->firstNode).
-         * Keep looping through $node->getNextNode() until it returns null (recursive).
-         * Build the array from those results.
-         * Return array.
-         */
         $array = [];
         $node  = $this->firstNode;
 
