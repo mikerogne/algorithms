@@ -81,6 +81,8 @@ class SingleLinkedList implements Contracts\SingleLinkedList
                 // Insert new node right after this one, making it become "inserted" after.
                 $currentNode->setNextNode($newNode);
                 $this->totalNodes++;
+
+                break;
             }
 
             $currentNode = $currentNode->getNextNode();
@@ -190,7 +192,21 @@ class SingleLinkedList implements Contracts\SingleLinkedList
 
     public function reverseList()
     {
-        // todo - not in any hurry to get this one done. get basics working first.
+        $previousNode = null;
+        $currentNode  = $this->firstNode;
+
+        while ($currentNode) {
+            $nextNode = $currentNode->getNextNode();
+
+            $currentNode->setNextNode($previousNode);
+
+            // Move to the next node in the list.
+            $previousNode = $currentNode;
+            $currentNode  = $nextNode;
+        }
+
+        // At the end of this loop, $nextNode will be null, and $previousNode will be the new head.
+        $this->firstNode = $previousNode;
     }
 
     /**

@@ -193,4 +193,51 @@ class SingleLinkedListTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /** @test */
+    public function reversing_list_is_correct()
+    {
+        $this->list->reverseList();
+
+        $expected = ['third', 'second', 'first'];
+        $actual   = $this->list->getAllNodes();
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
+    public function count_is_correct_when_reversing_list()
+    {
+        $this->list->reverseList();
+
+        $expected = 3;
+        $actual   = $this->list->getTotalNodes();
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
+    public function reversing_list_is_correct_when_adding_node()
+    {
+        $this->list->addNodeAfter(1, "new node");
+        $this->list->reverseList();
+
+        $expected = ["third", "new node", "second", "first"];
+        $actual   = $this->list->getAllNodes();
+
+        $message = "Expected: " . print_r($expected, true) . "\n\nActual: " . print_r($actual, true);
+        $this->assertEquals($expected, $actual, $message);
+    }
+
+    /** @test */
+    public function reversing_list_is_correct_when_removing_node()
+    {
+        $this->list->deleteNode(1);
+        $this->list->reverseList();
+
+        $expected = ["third", "first"];
+        $actual   = $this->list->getAllNodes();
+
+        $this->assertEquals($expected, $actual);
+    }
 }
