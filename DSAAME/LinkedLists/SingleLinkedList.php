@@ -65,7 +65,7 @@ class SingleLinkedList implements Contracts\SingleLinkedList
 
     public function addNodeAfter($nodePosition, $data)
     {
-        if ($nodePosition > $this->totalNodes - 1)
+        if ($this->nodeOutOfBounds($nodePosition))
             throw new \Exception("Out of bounds.");
 
         $newNode     = new SingleLinkedListNode($data);
@@ -169,5 +169,14 @@ class SingleLinkedList implements Contracts\SingleLinkedList
     protected function haveNodes()
     {
         return $this->totalNodes > 0;
+    }
+
+    /**
+     * @param $nodePosition
+     * @return bool
+     */
+    protected function nodeOutOfBounds($nodePosition)
+    {
+        return $nodePosition > $this->totalNodes - 1;
     }
 }
