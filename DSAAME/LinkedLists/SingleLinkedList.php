@@ -68,7 +68,6 @@ class SingleLinkedList implements Contracts\SingleLinkedList
         if ($this->nodeOutOfBounds($nodePosition))
             throw new \Exception("Out of bounds.");
 
-        $newNode     = new SingleLinkedListNode($data);
         $currentNode = $this->firstNode;
         $count       = 0;
 
@@ -76,6 +75,7 @@ class SingleLinkedList implements Contracts\SingleLinkedList
             if ($count == $nodePosition) {
                 // Take what would have been the next node, and make it the NEW NODE's next node.
                 $previouslyNextNode = $currentNode->getNextNode();
+                $newNode            = new SingleLinkedListNode($data);
                 $newNode->setNextNode($previouslyNextNode);
 
                 // Insert new node right after this one, making it become "inserted" after.
@@ -97,7 +97,7 @@ class SingleLinkedList implements Contracts\SingleLinkedList
         $count       = 0;
 
         while ($currentNode) {
-            if($count == $nodePosition)
+            if ($count == $nodePosition)
                 return $currentNode->getData();
 
             $currentNode = $currentNode->getNextNode();
@@ -125,7 +125,27 @@ class SingleLinkedList implements Contracts\SingleLinkedList
 
     public function deleteNode($nodePosition)
     {
-        // todo
+        if ($this->nodeOutOfBounds($nodePosition))
+            throw new \Exception("Out of bounds.");
+
+        $currentNode = $this->firstNode;
+        $count       = 0;
+
+        while ($currentNode) {
+            if ($count == $nodePosition - 1) {
+                // The next node is the one to remove from list.
+                $nodeToDelete = $currentNode->getNextNode();
+                $currentNode->setNextNode($nodeToDelete->getNextNode());
+                $this->totalNodes--;
+
+                return true;
+            }
+
+            $currentNode = $currentNode->getNextNode();
+            $count++;
+        }
+
+        return false;
     }
 
     public function deleteLastNode()
