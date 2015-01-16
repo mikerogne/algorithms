@@ -90,7 +90,22 @@ class SingleLinkedList implements Contracts\SingleLinkedList
 
     public function getNode($nodePosition)
     {
-        // todo
+        if ($this->nodeOutOfBounds($nodePosition))
+            throw new \Exception("Out of bounds.");
+
+        $currentNode = $this->firstNode;
+        $count       = 0;
+
+        while ($currentNode) {
+            echo "count={$count} and nodePosition={$nodePosition}\n";
+            if($count == $nodePosition)
+                return $currentNode->getData();
+
+            $currentNode = $currentNode->getNextNode();
+            $count++;
+        }
+
+        return null;
     }
 
     public function getAllNodes()

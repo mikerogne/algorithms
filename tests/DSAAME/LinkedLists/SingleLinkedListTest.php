@@ -87,4 +87,22 @@ class SingleLinkedListTest extends PHPUnit_Framework_TestCase
     {
         $this->list->addNodeAfter(100, "new node");
     }
+
+    /** @test */
+    public function can_get_second_node()
+    {
+        $expected = 'second';
+        $actual = $this->list->getNode(1);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
+    public function can_get_third_node()
+    {
+        $expected = 'third';
+        $actual = $this->list->getNode(2);
+
+        $this->assertEquals($expected, $actual);
+    }
 }
