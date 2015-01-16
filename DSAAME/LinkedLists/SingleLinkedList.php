@@ -94,7 +94,7 @@ class SingleLinkedList implements Contracts\SingleLinkedList
     public function getNode($nodePosition)
     {
         if ($this->nodeOutOfBounds($nodePosition))
-            throw new OutOfBoundsException("Out of bounds.");
+            throw new OutOfBoundsException("Requested position {$nodePosition}, but only have {$this->totalNodes} nodes.");
 
         $currentNode = $this->firstNode;
         $count       = 0;
@@ -129,7 +129,7 @@ class SingleLinkedList implements Contracts\SingleLinkedList
     public function deleteNode($nodePosition)
     {
         if ($this->nodeOutOfBounds($nodePosition))
-            throw new OutOfBoundsException("Out of bounds.");
+            throw new OutOfBoundsException("Requested position {$nodePosition}, but only have {$this->totalNodes} nodes.");
 
         $currentNode = $this->firstNode;
         $count       = 0;
