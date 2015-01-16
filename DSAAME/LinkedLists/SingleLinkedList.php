@@ -1,5 +1,6 @@
 <?php namespace DSAAME\LinkedLists;
 
+use OutOfBoundsException;
 
 class SingleLinkedList implements Contracts\SingleLinkedList
 {
@@ -66,7 +67,7 @@ class SingleLinkedList implements Contracts\SingleLinkedList
     public function addNodeAfter($nodePosition, $data)
     {
         if ($this->nodeOutOfBounds($nodePosition))
-            throw new \Exception("Out of bounds.");
+            throw new OutOfBoundsException("Requested position {$nodePosition}, but only have {$this->totalNodes} nodes.");
 
         $currentNode = $this->firstNode;
         $count       = 0;
@@ -93,7 +94,7 @@ class SingleLinkedList implements Contracts\SingleLinkedList
     public function getNode($nodePosition)
     {
         if ($this->nodeOutOfBounds($nodePosition))
-            throw new \Exception("Out of bounds.");
+            throw new OutOfBoundsException("Out of bounds.");
 
         $currentNode = $this->firstNode;
         $count       = 0;
@@ -128,7 +129,7 @@ class SingleLinkedList implements Contracts\SingleLinkedList
     public function deleteNode($nodePosition)
     {
         if ($this->nodeOutOfBounds($nodePosition))
-            throw new \Exception("Out of bounds.");
+            throw new OutOfBoundsException("Out of bounds.");
 
         $currentNode = $this->firstNode;
         $count       = 0;

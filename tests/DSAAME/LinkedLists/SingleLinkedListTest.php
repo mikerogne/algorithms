@@ -80,8 +80,7 @@ class SingleLinkedListTest extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Exception
-     * @expectedExceptionMessage Out of bounds.
+     * @expectedException \OutOfBoundsException
      */
     public function throws_out_of_bounds_exception()
     {
