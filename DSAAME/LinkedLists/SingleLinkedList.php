@@ -192,8 +192,9 @@ class SingleLinkedList implements Contracts\SingleLinkedList
 
     public function reverseList()
     {
-        $previousNode = null;
-        $currentNode  = $this->firstNode;
+        $previousNode   = null;
+        $currentNode    = $this->firstNode;
+        $this->lastNode = $this->firstNode;
 
         while ($currentNode) {
             $nextNode = $currentNode->getNextNode();
