@@ -6,7 +6,7 @@ class DoubleLinkedListNode implements Contracts\DoubleLinkedListNode
     protected $previousNode;
     protected $nextNode;
 
-    public function construct($data = null)
+    public function __construct($data = null)
     {
         $this->data         = $data;
         $this->previousNode = null;
