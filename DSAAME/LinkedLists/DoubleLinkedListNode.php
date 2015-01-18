@@ -41,6 +41,9 @@ class DoubleLinkedListNode implements Contracts\DoubleLinkedListNode
         $this->previousNode = $previousNode;
     }
 
+    /**
+     * @return DoubleLinkedListNode
+     */
     public function getPreviousNode()
     {
         return $this->previousNode;
