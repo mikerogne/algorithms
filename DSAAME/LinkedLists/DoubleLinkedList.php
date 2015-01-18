@@ -73,7 +73,12 @@ class DoubleLinkedList implements Contracts\DoubleLinkedList
                 $newNode            = new DoubleLinkedListNode($data);
                 $newNode->setNextNode($previouslyNextNode);
                 $newNode->setPreviousNode($currentNode);
-                $previouslyNextNode->setPreviousNode($newNode);
+                $currentNode->setNextNode($newNode);
+
+                // next node MIGHT be null... if we only have 1 node!
+                if ($previouslyNextNode)
+                    $previouslyNextNode->setPreviousNode($newNode);
+
                 $this->totalNodes++;
 
                 break;
@@ -86,32 +91,102 @@ class DoubleLinkedList implements Contracts\DoubleLinkedList
 
     public function getNode($nodePosition)
     {
-        return 'real first';
+        if ($this->nodeOutOfBounds($nodePosition))
+            throw new OutOfBoundsException("Requested position {$nodePosition}, but only have {$this->totalNodes} nodes.");
+
+        $currentNode = $this->firstNode;
+        $count       = 0;
+
+        while ($currentNode) {
+            if ($count == $nodePosition)
+                return $currentNode->getData();
+
+            $currentNode = $currentNode->getNextNode();
+            $count++;
+        }
+
+        return null;
     }
 
     public function getAllNodes()
     {
+        $array = [];
+        $node  = $this->firstNode;
 
+        while ($node) {
+            $array[] = $node->getData();
+            $node    = $node->getNextNode();
+        }
+
+        return $array;
     }
 
     public function deleteNode($nodePosition)
     {
+        if ($this->nodeOutOfBounds($nodePosition))
+            throw new OutOfBoundsException("Requested position {$nodePosition}, but only have {$this->totalNodes} nodes.");
 
+        $currentNode = $this->firstNode;
+        $count       = 0;
+
+        while ($currentNode) {
+            if ($count == $nodePosition - 1) {
+                // The next node is the one to remove from list.
+                $nodeToDelete    = $currentNode->getNextNode();
+                $nodeAfterDelete = $nodeToDelete->getNextNode();
+
+                $currentNode->setNextNode($nodeAfterDelete);
+                $nodeAfterDelete->setPreviousNode($currentNode);
+                $this->totalNodes--;
+
+                return true;
+            }
+
+            $currentNode = $currentNode->getNextNode();
+            $count++;
+        }
+
+        return false;
     }
 
     public function deleteLastNode()
     {
+        // If we have 1 (or zero) nodes, easy peasy.
+        if ($this->totalNodes <= 1)
+            return $this->deleteAllNodes();
 
+        $currentNode = $this->firstNode;
+
+        while ($currentNode) {
+            if ($currentNode->isNextToLastNode()) {
+                $currentNode->setNextNode(null);
+                $this->totalNodes--;
+                break;
+            }
+
+            $currentNode = $currentNode->getNextNode();
+        }
     }
 
     public function deleteFirstNode()
     {
+        // Basically, just set the 2nd node in the list as $this->firstNode, and decrement our totalNodes count.
+        if ($this->totalNodes <= 1)
+            return $this->deleteAllNodes();
 
+        $this->firstNode = $this->firstNode->getNextNode();
+        $this->totalNodes--;
+
+        return true;
     }
 
     public function deleteAllNodes()
     {
+        $this->firstNode  = null;
+        $this->lastNode   = null;
+        $this->totalNodes = 0;
 
+        return true;
     }
 
     protected function haveNodes()

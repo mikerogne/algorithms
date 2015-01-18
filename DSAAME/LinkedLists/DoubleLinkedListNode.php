@@ -48,4 +48,17 @@ class DoubleLinkedListNode implements Contracts\DoubleLinkedListNode
     {
         return $this->previousNode;
     }
+
+    /**
+     * @return bool
+     */
+    public function isNextToLastNode()
+    {
+        $nextNode = $this->getNextNode();
+
+        if (!$nextNode)
+            return false;
+
+        return $nextNode->getNextNode() === null;
+    }
 }
