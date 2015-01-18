@@ -1,6 +1,6 @@
 <?php
 /*
- * This results in an 83% score.
+ * This results in an 100% score.
  */
 
 function solution($A)
