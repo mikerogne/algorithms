@@ -9,7 +9,7 @@ function solution($A)
     $lastPart          = array_sum(array_slice($A, 1, count($A) - 1));
     $minimalDifference = abs($firstPart - $lastPart);
 
-    for ($i = 1; $i < count($A); $i++) {
+    for ($i = 1; $i < count($A) - 1; $i++) {
         $thisNumber = $A[$i];
 
         $firstPart = $firstPart + $thisNumber;
