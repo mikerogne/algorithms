@@ -239,4 +239,31 @@ class SingleLinkedListTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /** @test */
+    public function get_first_node_from_end()
+    {
+        $expected = 'third';
+        $actual = $this->list->getNthNodeFromEnd(1)->getData();
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
+    public function get_second_node_from_end()
+    {
+        $expected = 'second';
+        $actual = $this->list->getNthNodeFromEnd(2)->getData();
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /** @test */
+    public function get_third_node_from_end()
+    {
+        $expected = 'first';
+        $actual = $this->list->getNthNodeFromEnd(3)->getData();
+
+        $this->assertEquals($expected, $actual);
+    }
 }

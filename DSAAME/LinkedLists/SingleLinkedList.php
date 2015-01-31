@@ -211,6 +211,26 @@ class SingleLinkedList implements Contracts\SingleLinkedList
         $this->firstNode = $previousNode;
     }
 
+    public function getNthNodeFromEnd($n)
+    {
+        if ($n > $this->totalNodes)
+            throw new \OutOfBoundsException;
+
+        $currentNode = $this->firstNode;
+        $nthNode     = $this->firstNode;
+        $count       = 0;
+
+        while ($currentNode) {
+            if($count >= $n)
+                $nthNode = $nthNode->getNextNode();
+
+            $count++;
+            $currentNode = $currentNode->getNextNode();
+        }
+
+        return $nthNode;
+    }
+
     /**
      * @return bool
      */
